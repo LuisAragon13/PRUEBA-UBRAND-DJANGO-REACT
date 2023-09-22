@@ -15,7 +15,7 @@ export function BookList() {
         loadBooks();
     }, [])
 
-    return <div>
+    return <div className="grid grid-cols-3 gap-3">
         {
             books.map(book => (
                 <BookCard key={book.id} book={book}/>

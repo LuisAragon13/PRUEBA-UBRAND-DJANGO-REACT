@@ -24,8 +24,8 @@ export function BooksFormPage() {
         toast.success('Book updated succesfully!',{
           position: "bottom-right",
           style: {
-            background: "blue",
-            color: "orange"
+            background: "#101010",
+            color: "white"
           }
         });
       } else {
@@ -33,8 +33,8 @@ export function BooksFormPage() {
         toast.success('Book saved succesfully!',{
           position: "bottom-right",
           style: {
-            background: "blue",
-            color: "orange"
+            background: "#101010",
+            color: "white"
           }
         });
       }
@@ -54,30 +54,41 @@ export function BooksFormPage() {
     }, []);
 
     return (
-      <div>
+      <div className="max-w-xl mx-auto">
         <form onSubmit={onSubmit}>
-          <input type="text" placeholder="Title" {...register("title", { required: true })}/>
+          <input type="text" placeholder="Title" {...register("title", { required: true })}
+            className="bg-zinc-700 p-3 rounded-lg block w-full mb-3"
+          />
           {errors.title && <span>Title es required</span>}
-          <input type="text" placeholder="Author" {...register("author", { required: true })}/>
+          <input type="text" placeholder="Author" {...register("author", { required: true })}
+            className="bg-zinc-700 p-3 rounded-lg block w-full mb-3"
+          />
           {errors.author && <span>Author es required</span>}
-          <input type="text" placeholder="Publication year" {...register("publication_year", { required: true })}/>
+          <input type="text" placeholder="Publication year" {...register("publication_year", { required: true })}
+            className="bg-zinc-700 p-3 rounded-lg block w-full mb-3"
+          />
           {errors.publication_year && <span>Year es required</span>}
-          <button>Save</button>
+          <button className="bg-indigo-500 p-3 rounded-lg block w-full mt-3">Save</button>
         </form>
-        {params.id && <button onClick={async () => {
-          const accepted = window.confirm('Do you want to delete this book?');
-          if(accepted===true){
-            await deleteBooks(params.id);
-            toast.success('Book deleted succesfully!',{
-              position: "bottom-right",
-              style: {
-                background: "blue",
-                color: "orange"
-              }
-            });
-            navigate("/books");
+        {params.id && (
+          <div className="flex justify-end">
+            <button className="bg-red-500 p-3 rounded-lg block w-full mt-3" onClick={async () => {
+            const accepted = window.confirm('Do you want to delete this book?');
+            if(accepted===true){
+              await deleteBooks(params.id);
+              toast.success('Book deleted succesfully!',{
+                position: "bottom-right",
+                style: {
+                  background: "#101010",
+                  color: "white"
+                }
+              });
+              navigate("/books");
+            }
+            }}>Delete</button>
+          </div>
+          )
           }
-        }}>Delete</button>}
       </div>
     )
   }

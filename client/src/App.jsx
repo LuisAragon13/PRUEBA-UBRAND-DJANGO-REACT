@@ -7,14 +7,16 @@ import { Toaster } from 'react-hot-toast'
 function App() {
   return (
     <BrowserRouter>
-      <Navigation />
-      <Routes>
-        <Route path='/' element={<Navigate to='/books'/>}/>
-        <Route path='/books' element={<BooksPage/>}/>
-        <Route path='/books-create' element={<BooksFormPage/>}/>
-        <Route path='/books/:id' element={<BooksFormPage/>}/>
-      </Routes>
-      <Toaster/>
+      <div className="container mx-auto">
+        <Navigation />
+        <Routes>
+          <Route path='/' element={<Navigate to='/books'/>}/>
+          <Route path='/books' element={<BooksPage/>}/>
+          <Route path='/books-create' element={<BooksFormPage/>}/>
+          <Route path='/books/:id' element={<BooksFormPage/>}/>
+        </Routes>
+        <Toaster/>
+      </div>
     </BrowserRouter>
   )
 }
